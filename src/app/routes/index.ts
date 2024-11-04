@@ -8,6 +8,7 @@ import { galleryRoutes } from '../modules/gallery/gallery.route';
 import { productRoutes } from '../modules/products/products.route';
 import { servicesRoutes } from '../modules/services/service.route';
 import { reviewRoutes } from '../modules/review/review.route';
+import { brandRoutes } from '../modules/brand/brand.route';
 const router = Router();
 
 const moduleRoutes = [
@@ -43,6 +44,10 @@ const moduleRoutes = [
   {
     path: '/review',
     route: reviewRoutes,
+  },
+  {
+    path: '/brands',
+    route: brandRoutes,
   },
 ];
 
