@@ -11,7 +11,7 @@ const createContact = async (req: Request, res: Response, next: NextFunction) =>
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Contact create succesfully',
+      message: 'Submit your form succesfully',
       data: result,
     });
   } catch (err) {
