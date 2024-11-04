@@ -7,6 +7,7 @@ import { contactRoutes } from '../modules/contact/contact.route';
 import { galleryRoutes } from '../modules/gallery/gallery.route';
 import { productRoutes } from '../modules/products/products.route';
 import { servicesRoutes } from '../modules/services/service.route';
+import { reviewRoutes } from '../modules/review/review.route';
 const router = Router();
 
 const moduleRoutes = [
@@ -38,6 +39,10 @@ const moduleRoutes = [
   {
     path: '/services',
     route: servicesRoutes,
+  },
+  {
+    path: '/review',
+    route: reviewRoutes,
   },
 ];
 
