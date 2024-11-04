@@ -2,10 +2,8 @@ import { z } from 'zod';
 
 const createAbout = z.object({
   body: z.object({
-    title: z.string({ message: ' title is required' }),
-    sub_title: z.string({ message: 'Sub title is required' }),
     description: z.string({ message: ' description is required' }),
-    image: z.string({ message: 'Image URL is required' }),
+    images: z.array(z.string(), { required_error: 'Images are required' }),
     meta_title: z.string({
       required_error: 'Meta title is required',
     }),
@@ -20,8 +18,6 @@ const createAbout = z.object({
 
 const updateAbout = z.object({
   body: z.object({
-    title: z.string().optional(),
-    sub_title: z.string().optional(),
     description: z.string().optional(),
     image: z.string().optional(),
     meta_title: z.string().optional(),
