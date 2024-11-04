@@ -9,6 +9,7 @@ import { productRoutes } from '../modules/products/products.route';
 import { servicesRoutes } from '../modules/services/service.route';
 import { reviewRoutes } from '../modules/review/review.route';
 import { brandRoutes } from '../modules/brand/brand.route';
+import { complianceRoutes } from '../modules/complianceEthics/compliance.route';
 const router = Router();
 
 const moduleRoutes = [
@@ -48,6 +49,10 @@ const moduleRoutes = [
   {
     path: '/brands',
     route: brandRoutes,
+  },
+  {
+    path: '/compliance',
+    route: complianceRoutes,
   },
 ];
 

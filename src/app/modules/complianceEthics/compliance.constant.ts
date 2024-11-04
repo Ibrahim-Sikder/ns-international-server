@@ -1,0 +1,2 @@
+
+export const complianceSearch = ['title'];
