@@ -1,10 +1,8 @@
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import QueryBuilder from '../../builder/QueryBuilder';
 import { contactSearch } from './contact.constant';
 import { TContact } from './contact.interface';
 import { Contact } from './contact.model';
-
 
 const createContact = async (payload: TContact) => {
   const result = await Contact.create(payload);
@@ -20,15 +18,13 @@ const getAllContact = async (query: Record<string, unknown>) => {
     .fields();
 
   const meta = await contactQuery.countTotal();
-  const histories = await contactQuery.modelQuery;
+  const contacts = await contactQuery.modelQuery;
 
   return {
     meta,
-    histories,
+    contacts,
   };
 };
-
-
 
 const deleteContact = async (id: string) => {
   const result = await Contact.deleteOne({ _id: id });

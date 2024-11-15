@@ -12,15 +12,12 @@ const aboutSchema = new Schema<TAbout>({
   },
   meta_title: {
     type: String,
-    required: [true, 'Meta title is required'],
   },
   meta_description: {
     type: String,
-    required: [true, 'Meta title is required'],
   },
   meta_keywords: {
     type: [String],
-    required: [true, 'Meta title is required'],
   },
 });
 

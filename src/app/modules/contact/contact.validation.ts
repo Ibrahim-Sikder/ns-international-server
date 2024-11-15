@@ -1,54 +1,14 @@
 import { z } from 'zod';
 
-const createContactValidation = z.object({
+export const contactValidationSchema = z.object({
   body: z.object({
-    first_name: z
-      .string({
-        required_error: 'First name is required.',
-      })
-      .trim(),
-
-    last_name: z
-      .string({
-        required_error: 'Last name is required.',
-      })
-      .trim(),
-
+    name: z.string().min(1, 'Name is required.'),
     email: z
-      .string({
-        required_error: 'Email is required.',
-      })
-      .email('Please provide a valid email address.')
-      .trim()
-      .toLowerCase(),
-
-    company_name: z
-      .string({
-        required_error: 'Company name is required.',
-      })
-      .trim(),
-
-    subject: z
-      .string({
-        required_error: 'Subject is required.',
-      })
-      .trim(),
-
-    phone: z
-      .number({
-        required_error: 'Phone number is required.',
-      })
-      
-      .transform(Number),
-
-    message: z
-      .string({
-        required_error: 'Message is required.',
-      })
-      .trim(),
+      .string()
+      .min(1, 'Email is required.')
+      .email('Please provide a valid email address.'),
+    company_name: z.string().min(1, 'Company name is required.'),
+    subject: z.string().min(1, 'Subject is required.'),
+    message: z.string().min(1, 'Message is required.'),
   }),
 });
-
-export const ContactValidations = {
-  createContactValidation,
-};

@@ -6,6 +6,9 @@ const aboutSchema = new Schema<TBrand>({
     type: [String],
     required: [true, 'Image URL is required'],
   },
+  title: {
+    type: String,
+  },
 });
 
 export const Brand = model<TBrand>('Brand', aboutSchema);

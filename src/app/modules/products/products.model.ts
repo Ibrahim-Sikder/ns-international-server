@@ -2,8 +2,9 @@ import { Schema, model } from 'mongoose';
 import { TProduct } from './products.interface';
 
 const productSchema = new Schema<TProduct>({
-  category: { type: String, required: true },
-  images: { type: [String], required: true },
+  title: { type: String, },
+  category: { type: String,  },
+  images: { type: [String], },
 });
 
 export const Product = model<TProduct>('Products', productSchema);

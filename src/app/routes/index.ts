@@ -11,6 +11,7 @@ import { reviewRoutes } from '../modules/review/review.route';
 import { brandRoutes } from '../modules/brand/brand.route';
 import { complianceRoutes } from '../modules/complianceEthics/compliance.route';
 import { bannerRoutes } from '../modules/banner/banner.route';
+import { missionRoutes } from '../modules/mission/mission.route';
 const router = Router();
 
 const moduleRoutes = [
@@ -38,6 +39,10 @@ const moduleRoutes = [
   {
     path: '/contact',
     route: contactRoutes,
+  },
+  {
+    path: '/mission',
+    route: missionRoutes,
   },
   {
     path: '/products',

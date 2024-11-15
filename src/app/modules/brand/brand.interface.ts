@@ -1,3 +1,4 @@
 export type TBrand = {
-    images:string[]
+    images:string[],
+    title:string,
 }
