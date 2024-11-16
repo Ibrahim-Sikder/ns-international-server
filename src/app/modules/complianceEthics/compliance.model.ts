@@ -8,7 +8,7 @@ const complianceSchema = new Schema<TCompliance>({
   description: {
     type: String,
   },
-  social_compliance_img: {
+  socialCompilianceImages: {
     type: [String],
   },
   social_compliance_title: {
@@ -20,7 +20,7 @@ const complianceSchema = new Schema<TCompliance>({
   EmployeesCocCovers: {
     type: [String],
   },
-  zeroTolerance_img: {
+  zeroToleranceImages: {
     type: [String],
   },
   zeroTolerance_Title: {
@@ -29,7 +29,7 @@ const complianceSchema = new Schema<TCompliance>({
   zeroTolerance_description: {
     type: String,
   },
-  cod_of_conduct_img: {
+  codeOfConductImages: {
     type: [String],
   },
   cod_of_conduct_title: {
@@ -50,7 +50,7 @@ const complianceSchema = new Schema<TCompliance>({
   csr_title: {
     type: String,
   },
-  csr_img: {
+  csrImages: {
     type: [String],
   },
 });

@@ -12,6 +12,7 @@ import { brandRoutes } from '../modules/brand/brand.route';
 import { complianceRoutes } from '../modules/complianceEthics/compliance.route';
 import { bannerRoutes } from '../modules/banner/banner.route';
 import { missionRoutes } from '../modules/mission/mission.route';
+import { whoWeAreRoutes } from '../modules/whoweare/whoweare.route';
 const router = Router();
 
 const moduleRoutes = [
@@ -63,6 +64,10 @@ const moduleRoutes = [
   {
     path: '/compliance',
     route: complianceRoutes,
+  },
+  {
+    path: '/whoweare',
+    route: whoWeAreRoutes,
   },
 ];
 

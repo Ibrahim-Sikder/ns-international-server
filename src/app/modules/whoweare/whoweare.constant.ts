@@ -1,0 +1,1 @@
+export const whowWeAreSearch = ['question','answer']
