@@ -12,22 +12,22 @@ const whoWeAreSchema = new Schema<TWhoWeAre>({
     type: [String],
   },
   client: {
-    type: Number,
+    type: String,
   },
   shipment: {
-    type: Number,
+    type: String,
   },
   experience: {
-    type: Number,
+    type: String,
   },
   visited_conference: {
-    type: Number,
+    type: String,
   },
   compliance_factories: {
-    type: Number,
+    type: String,
   },
   production: {
-    type: Number,
+    type: String,
   },
 });
 
