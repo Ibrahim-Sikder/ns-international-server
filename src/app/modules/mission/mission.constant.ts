@@ -1,1 +1,1 @@
-export const missionSearch = ['title'];
+export const missionSearch = ['title','description','category'];
