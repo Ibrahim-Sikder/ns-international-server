@@ -1,0 +1,65 @@
+name: Node.js Deployment with NGINX and SSL
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to VPS using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            # Navigate to project directory
+            cd /var/www/html/nsi/server
+
+            # Fetch latest changes and reset to main branch
+            git fetch --all
+            git reset --hard origin/main
+
+            # Setup environment and dependencies
+            cp .env.example .env
+            npm install
+            npm run build
+
+            # Deploy NGINX Configuration Conditionally
+            SERVER_CONF="/etc/nginx/sites-available/api.nsintbd.com"
+            PROJECT_CONF="/var/www/html/nsi/server/nginx.conf"
+
+            if ! diff -q "$PROJECT_CONF" "$SERVER_CONF" > /dev/null; then
+              echo "NGINX configuration has changed. Updating..."
+              sudo cp "$PROJECT_CONF" "$SERVER_CONF"
+
+              # Ensure symbolic link exists in sites-enabled
+              if [ ! -f /etc/nginx/sites-enabled/api.nsintbd.com ]; then
+                sudo ln -s "$SERVER_CONF" /etc/nginx/sites-enabled/api.nsintbd.com
+              fi
+
+              # Test and reload NGINX
+              sudo nginx -t && sudo systemctl reload nginx
+            else
+              echo "NGINX configuration is unchanged. Skipping update."
+            fi
+
+            # Manage SSL using Certbot
+            if [ ! -f /etc/letsencrypt/live/api.nsintbd.com/fullchain.pem ]; then
+              echo "SSL not found. Setting up Certbot..."
+              sudo certbot --nginx -d api.nsintbd.com -d www.api.nsintbd.com --non-interactive --agree-tos --register-unsafely-without-email
+            else
+              echo "SSL certificate exists. Skipping Certbot."
+            fi
+
+            # Manage PM2 process
+            if pm2 describe nsi-server > /dev/null; then
+              pm2 restart nsi-server
+            else
+              pm2 start npm --name "nsi-server" -- run start
+            fi
+
+            # Save PM2 process list
+            pm2 save
