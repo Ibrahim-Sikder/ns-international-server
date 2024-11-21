@@ -37,7 +37,7 @@ jobs:
 
               # Ensure symbolic link exists in sites-enabled
               if [ ! -f /etc/nginx/sites-enabled/api.nsintbd.com ]; then
-                sudo ln -s "$SERVER_CONF" /etc/nginx/sites-enabled/api.nsintbd.com
+                sudo ln -s "$SERVER_CONF" /etc/nginx/sites-enabled/api.nsintbd.com 
               fi
 
               # Test and reload NGINX
@@ -49,7 +49,7 @@ jobs:
             # Manage SSL using Certbot
             if [ ! -f /etc/letsencrypt/live/api.nsintbd.com/fullchain.pem ]; then
               echo "SSL not found. Setting up Certbot..."
-              sudo certbot --nginx -d api.nsintbd.com
+              sudo certbot --nginx -d api.nsintbd.com --non-interactive --agree-tos --register-unsafely-without-email
             else
               echo "SSL certificate exists. Skipping Certbot."
             fi
