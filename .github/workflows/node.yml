@@ -47,12 +47,7 @@ jobs:
             fi
 
             # Manage SSL using Certbot
-            if [ ! -f /etc/letsencrypt/live/api.nsintbd.com/fullchain.pem ]; then
-              echo "SSL not found. Setting up Certbot..."
               sudo certbot --nginx -d api.nsintbd.com --non-interactive --agree-tos --register-unsafely-without-email
-            else
-              echo "SSL certificate exists. Skipping Certbot."
-            fi
 
             # Manage PM2 process
             if pm2 describe nsi-server > /dev/null; then
