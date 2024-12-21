@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const allowedOrigins = ['http://localhost:3001','http://localhost:3000'];
-// const allowedOrigins = ['https://nsintbd.com/', 'https://admin.nsintbd.com/'];
+// const allowedOrigins = ['http://localhost:3001','http://localhost:3000'];
+const allowedOrigins = ['https://nsintbd.com/', 'https://admin.nsintbd.com/'];
 
 app.use(
   cors({
