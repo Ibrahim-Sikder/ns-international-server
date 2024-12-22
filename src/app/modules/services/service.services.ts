@@ -18,7 +18,12 @@ const getAllService = async (query: Record<string, unknown>) => {
     .fields();
 
   const meta = await aboutQuery.countTotal();
-  const services = await aboutQuery.modelQuery;
+  const services = await aboutQuery.modelQuery.populate([
+    {
+      path: 'category',
+      select: 'name',
+    },
+  ]);
 
   return {
     meta,

@@ -18,7 +18,12 @@ const getAllProduct = async (query: Record<string, unknown>) => {
     .fields();
 
   const meta = await aboutQuery.countTotal();
-  const products = await aboutQuery.modelQuery;
+  const products = await aboutQuery.modelQuery.populate([
+    {
+      path: 'category',
+      select: 'name',
+    },
+  ]);
 
   return {
     meta,
@@ -26,7 +31,12 @@ const getAllProduct = async (query: Record<string, unknown>) => {
   };
 };
 const getSinigleProduct = async (id: string) => {
-  const result = await Product.findById(id);
+  const result = await Product.findById(id).populate([
+    {
+      path: 'category',
+      select: 'name',
+    },
+  ]);
   return result;
 };
 const updateProduct = async (id: string, payload: Partial<TProduct>) => {
